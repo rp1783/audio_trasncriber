@@ -1,0 +1,16 @@
+services:
+  audio-transcriber-api:
+    build: .
+    ports:
+      - "5002:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - audio-transcriber-network
+
+networks:
+  audio-transcriber-network:
+    driver: bridge 
